@@ -9,6 +9,8 @@ class Player
 public:
 struct Space
 {
+bool isComputer;
+Node move_list;
 char player;
 bool isKing;
 int xCoord, Ycoord;
