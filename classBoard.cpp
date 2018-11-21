@@ -1,6 +1,9 @@
 #include <iostream>
 #include "checkersClasses.h"
+
 using namespace std;
+
+bool isOut();
 
 Board::Board()
 {
@@ -31,6 +34,7 @@ bool isOut()
 {
     // check if a move is out of bounds;
     cout << "Move is out of bounds" << endl;
+    return true;
 }
 
 void Board::removePiece()
@@ -49,14 +53,18 @@ void Player::makeMove()
     // make a players move;
     cout << "I allow players to make a move." << endl;
 }
-double Board::minimax()
+double Player::minimax()
 {
     // minimax algo to maximize players chances while minimizing opponents chances
+    double minimaxResult;
     cout << "I am minimax" << endl;
+    return minimaxResult;
 }
-void Board::checkStatus(){
+void Board::checkStatus()
+{
     // check the status of the game
     // such as piece count
     // number of kings, etc
     cout << "Status update" << endl;
 }
+

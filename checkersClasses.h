@@ -1,3 +1,6 @@
+#ifndef CHECKERSCLASSES_H
+#define CHECKERSCLASSES_H
+
 #include <iostream>
 using namespace std;
 
@@ -16,12 +19,13 @@ class Player
     {
         int x, y;
         int isKing;
-        node *next;
+        Node *next;
     };
     Node *NodePtr;
     void makeMove();
     bool isComputer;
     void computerLogic(); // possibly not needed b/c of minimax
+    double minimax(); 
 };
 
 class Board : public Player
@@ -29,13 +33,13 @@ class Board : public Player
   public:
     struct BoardStruct
     {
-        SpacePtr spaces[8][8];
+        Space spaces[8][8];
     };
-    BoardStruct *Board;
+    Board *board;
 
     struct LinkedList
     {
-        NodePtr head;
+        Node head;
         char Player;
         int pieceNum;
     };
@@ -47,6 +51,7 @@ class Board : public Player
     void checkMove();
     void removePiece();
     void updateBoard();
-    double minimax();
     void checkStatus();
 };
+
+#endif
