@@ -1,4 +1,4 @@
-#include "checkers.h"
+#include "Classes.h"
 
 #include <iostream>
 using namespace std;
@@ -40,12 +40,12 @@ void Player::plusMove(int row1, int column1, int row2, int column2, int value) {
   if (!moves) {
     moves = new_move;
     new_move->next = nullptr;
-    returncheck;
+    return check;
   }
   Move* prev = nullptr;
   Move* current = moves;
   while (current) {
-    if (p > current->value) break;
+    if (prev > current->value) break;
     prev = current;
     current = current->next;
   }
@@ -60,11 +60,11 @@ bool Player::inList(int row1, int column1, int row2, int column2) {
         current->columnloc == column1 &&
         current->newrowloc == row2 &&
         current->newcolumnloc == column2) {
-      returncheck true;
+      return true;
     }
     current = current->next;
   }
-  returncheck false;
+  return false;
 }
 
 void Player::deletePiece(int r, int c) {
@@ -120,5 +120,5 @@ int main() {
     game.CPUPlayer(false);
   }
   game.gameLoop();
-  returncheck 0;
+  return 0;
 }

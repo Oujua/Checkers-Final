@@ -1,5 +1,5 @@
-#ifndef CHECKERS_H
-#define CHECKERS_H
+#ifndef CLASSES_H
+#define CLASSES_H
 
 struct CheckerPiece {
   int row, column;

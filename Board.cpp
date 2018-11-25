@@ -1,4 +1,4 @@
-#include "checkersClassesUpdate.h"
+#include "Classes.h"
 
 #include <iostream>
 
@@ -14,33 +14,33 @@ Board::Board() {
     for (int col = 0; col < 8; col++) {
       if (row % 2 == col % 2) {
         black->add(row, col);
-        board[r][c] = black->pieces;
+        board[row][col] = black->pieces;
       } else {
-        board[r][c] = nullptr;
+        board[row][col] = nullptr;
       }
     }
   }
-  for (int r = 3; r < 5; r++) {
-    for (int c = 0; c < 8; c++) {
-      board[r][c] = nullptr;
+  for (int row = 3; row < 5; row++) {
+    for (int col = 0; col < 8; col++) {
+      board[row][col] = nullptr;
     }
   }
-  for (int r = 5; r < 8; r++) {
-    for (int c = 0; c < 8; c++) {
-      if (r % 2 == c % 2) {
-        red->add(r, c);
-        board[r][c] = red->pieces;
+  for (int row = 5; row < 8; row++) {
+    for (int col = 0; col < 8; col++) {
+      if (row % 2 == col % 2) {
+        red->add(row, col);
+        board[row][col] = red->pieces;
       } else {
-        board[r][c] = nullptr;
+        board[row][col] = nullptr;
       }
     }
   }
 }
 
 void Board::updateBoard() {
-  for (int r = 0; r < 8; r++) {
-    for (int c = 0; c < 8; c++) {
-      board[r][c] = nullptr;
+  for (int row = 0; row < 8; row++) {
+    for (int col = 0; col < 8; col++) {
+      board[row][col] = nullptr;
     }
   }
   CheckerPiece* current = black->pieces;
@@ -57,15 +57,15 @@ void Board::updateBoard() {
 
 void Board::showBoard() {
   cout << "C    ";
-  for (int c = 0; c < 8; c++) {
-    cout << c;
+  for (int col = 0; col < 8; col++) {
+    cout << col;
   }
   cout << endl;
-  for (int r = 0; r < 8; r++) {
-    cout << "R" << r << " - ";
-    for (int c = 0; c < 8; c++) {
-      if (board[r][c]) {
-        cout << board[r][c]->color;
+  for (int row = 0; row < 8; row++) {
+    cout << "R" << row << " - ";
+    for (int col = 0; col < 8; col++) {
+      if (board[row][col]) {
+        cout << board[row][col]->color;
       } else {
         cout << ".";
       }
@@ -176,8 +176,9 @@ void Board::moveCPU(Player* cpu) {
 }
 
 bool Board::gameOver() {
-  returncheck (black->pieces == nullptr || red->pieces == nullptr) ||
-         (black->moves == nullptr && red->moves == nullptr);
+  if (black->pieces == nullptr || red->pieces == nullptr ||
+         black->moves == nullptr && red->moves == nullptr);
+         gameover = true;
 }
 
 
@@ -187,24 +188,24 @@ void Board::clearMoves() {
 }
 
 bool Board::jumpPossible(int r1, int c1, int r2, int c2, int r3, int c3) {
-  if (r3 < 0 || r3 > 7 || c3 < 0 || c3 > 7) returncheck false;
-  if (!board[r1][c1] || !board[r2][c2]) returncheck false;
-  if (board[r3][c3]) returncheck false;
+  if (r3 < 0 || r3 > 7 || c3 < 0 || c3 > 7) turncheck = false;
+  if (!board[r1][c1] || !board[r2][c2]) turncheck = false;
+  if (board[r3][c3]) turncheck = false;
   if (board[r1][c1]->color == 'b') {
-    if (r3 < r1) returncheck false;
-    if (board[r2][c2]->color != 'r') returncheck false;
-    returncheck true;
+    if (r3 < r1) turncheck = false;
+    if (board[r2][c2]->color != 'r') turncheck = false;
+    turncheck = true;
   } else {
-    if (r3 > r1) returncheck false;
-    if (board[r2][c2]->color != 'b') returncheck false;
-    returncheck true;
+    if (r3 > r1) turncheck = false;
+    if (board[r2][c2]->color != 'b') turncheck = false;
+    turncheck = true;
   }
 }
 
 bool Board::movePossible(int r1, int c1, int r2, int c2) {
-  if (r2 < 0 || r2 > 7 || c2 < 0 || c2 > 7) returncheck false;
-  if (board[r2][c2]) returncheck false;
-  returncheck true;
+  if (r2 < 0 || r2 > 7 || c2 < 0 || c2 > 7) turncheck = false;
+  if (board[r2][c2]) turncheck = false;
+  turncheck = true;
 }
 
 void Board::generateMoves() {
@@ -276,8 +277,8 @@ void Board::makeMove(int r1, int c1, int r3, int c3) {
       black->deletePiece(r2, c2);
     }
   }
-  board[r1][c1]->r = r3;
-  board[r1][c1]->c = c3;
+  board[r1][c1]->row = r3;
+  board[r1][c1]->column = c3;
 }
 
 void Board::CPUPlayer(bool mode) {
