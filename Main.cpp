@@ -40,7 +40,7 @@ void Player::plusMove(int row1, int column1, int row2, int column2, int value) {
   if (!moves) {
     moves = new_move;
     new_move->next = nullptr;
-    return check;
+    return;
   }
   Move* prev = nullptr;
   Move* current = moves;
