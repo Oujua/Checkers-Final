@@ -133,9 +133,9 @@ void Board::game() {
         player->printMoves();
         do {
           cout << "Enter coordinates\n";
-          cout << "current piece: (row column): ";
+          cout << "current piece (row column): ";
           cin >> piece_r >> piece_c;
-          cout << "requested move: (row column): ";
+          cout << "requested move (row column): ";
           cin >> move_r >> move_c;
         } while (!(player->inList(piece_r, piece_c, move_r, move_c)));
         makeMove(piece_r, piece_c, move_r, move_c);
