@@ -11,11 +11,11 @@ Player::Player(char c) {
 
 void Player::printMoves() {
   Move* current = moves;
-  cout << "-----POSSIBLE MOVES (PLAYER "  << playercolor <<  ")-----\n";
+  cout << "Possible moves (Player "  << playercolor <<  ")\n";
   while (current) {
-    cout << "Move: R" << current->rowloc << " C" << current->columnloc << " ";
-    cout << "to R" << current->newrowloc << " C" << current->newcolumnloc;
-    cout << " (" << current->value << " p)\n";
+    cout << "Move: Row" << current->rowloc << " Column" << current->columnloc << " ";
+    cout << "to Row" << current->newrowloc << " Column" << current->newcolumnloc;
+    cout << " (" << current->value << " points)\n";
     current = current->next;
   }
 }
@@ -87,9 +87,9 @@ void Player::deletePiece(int r, int c) {
 
 void Player::printPieces() {
   CheckerPiece* current = pieces;
-  cout << "-----PIECES (PLAYER " << playercolor << ")-----\n";
+  cout << "Pieces for (Player " << playercolor << ")\n";
   while (current) {
-    cout << current->color << " piece: R" << current->row << " C" << current->column << endl;
+    cout << current->color << " piece location: Row" << current->row << " Column" << current->column << endl;
     current = current->next;
   }
 }
@@ -110,10 +110,10 @@ void Player::clearMoves() {
 int main() {
   Board game;
   char input;
-  do {
-    cout << "Play against a computer? Enter Y or N: ";
+  while (input != 'Y' && input != 'N') {
+    cout << "Would you like to play against a CPU? Y/N";
     cin >> input;
-  } while (input != 'Y' && input != 'N');
+  } 
   if (input == 'Y') {
     game.CPUPlayer(true);
   } else {

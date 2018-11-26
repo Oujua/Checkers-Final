@@ -127,17 +127,16 @@ void Board::gameLoop() {
       clearMoves();
       generateMoves();
       if (turncheck == choice) {
-        cout << "YOUR turncheck\n";
+        cout << "your turn!\n";
         player->printPieces();
         player->printMoves();
         do {
-          cout << "ENTER MOVE COORDINATES\n";
-          cout << "CHOSEN PIECE (ROW COLUMN): ";
+          cout << "Enter coordinates\n";
+          cout << "current piece: (row column): ";
           cin >> piece_r >> piece_c;
-          cout << "PIECE DESTINATION (ROW COLUMN): ";
+          cout << "requested move: (row column): ";
           cin >> move_r >> move_c;
         } while (!(player->inList(piece_r, piece_c, move_r, move_c)));
-        // black->makeMove(piece_r, piece_c, move_r, move_c);
         makeMove(piece_r, piece_c, move_r, move_c);
       } else {
         cout << "CPU turncheck\n";
@@ -149,36 +148,36 @@ void Board::gameLoop() {
     }
   }
   if (black->pieces == nullptr) {
-    cout << "Red player won!\n";
+    cout << "Red wins!\n";
   } else if (red->pieces == nullptr) {
-    cout << "Black player won!\n";
+    cout << "Black wins!\n";
   } else if (black->moves == nullptr && red->moves == nullptr) {
     cout << "Draw!\n";
   }
 }
 
 void Board::moveCPU(Player* cpu) {
-  // Make the first move in the list
   Move* first_move = cpu->moves;
   int r1, c1, r2, c2;
   if (first_move) {
-    r1 = first_move->r1;
-    c1 = first_move->c1;
-    r2 = first_move->r2;
-    c2 = first_move->c2;
-    cout << "***CPU moving R" << r1 << " C" << c1;
-    cout << " to R" << r2 << " C" << c2 << endl;
-    cout << "Making move\n";
+    r1 = first_move->rowloc;
+    c1 = first_move->columnloc;
+    r2 = first_move->newrowloc;
+    c2 = first_move->newcolumnloc;
+    cout << "CPU performing move from Row" << r1 << " Column" << c1;
+    cout << " to Row" << r2 << " Column" << c2 << endl;
+    cout << "Making move...\n";
     makeMove(r1, c1, r2, c2);
   } else {
-    cout << "CPU has no possible moves\n";
+    cout << "CPU has no possible moves!\n";
   }
 }
 
 bool Board::gameOver() {
   if (black->pieces == nullptr || red->pieces == nullptr ||
-         black->moves == nullptr && red->moves == nullptr);
+         (black->moves == nullptr && red->moves == nullptr));
          gameover = true;
+         return gameover;
 }
 
 
@@ -200,12 +199,14 @@ bool Board::jumpPossible(int r1, int c1, int r2, int c2, int r3, int c3) {
     if (board[r2][c2]->color != 'b') turncheck = false;
     turncheck = true;
   }
+return turncheck;
 }
 
 bool Board::movePossible(int r1, int c1, int r2, int c2) {
   if (r2 < 0 || r2 > 7 || c2 < 0 || c2 > 7) turncheck = false;
   if (board[r2][c2]) turncheck = false;
   turncheck = true;
+  return turncheck;
 }
 
 void Board::generateMoves() {
@@ -230,8 +231,6 @@ void Board::generateMoves() {
       }
     }
   }
-
-  // If no black jumps are possible
   if (!black->moves) {
     for (int r = 0; r < 8; r++) {
       for (int c = 0; c < 8; c++) {
@@ -265,10 +264,9 @@ void Board::generateMoves() {
 }
 
 void Board::makeMove(int r1, int c1, int r3, int c3) {
-  // If move is a jump
-  cout << "*******Entering make move function\n\n\n";
+  cout << "Executing make move.....\n\n\n";
   if (r1 + 2 == r3 || r1 - 2 == r3) {
-    cout << "****Attempting to make a jump move\n";
+    cout << "Executing jump move...\n";
     int r2 = (r1 + r3) / 2;
     int c2 = (c1 + c3) / 2;
     if (board[r1][c1]->color == 'b') {
