@@ -1,3 +1,6 @@
+#ifndef BOARD_CPP
+#define BOARD_CPP
+
 #include "Classes.h"
 
 #include <iostream>
@@ -280,3 +283,5 @@ void Board::makeMove(int r1, int c1, int r3, int c3) {
 void Board::CPUPlayer(bool mode) {
   CPU = mode;
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef PLAYER_CPP
+#define PLAYER_CPP
+
 #include "Classes.h"
 
 #include <iostream>
@@ -107,3 +110,5 @@ void Player::clearMoves() {
     moves = nullptr;
   }
 }
+
+#endif

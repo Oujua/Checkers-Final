@@ -8,7 +8,7 @@ int main() {
   Board game;
   char input;
   while (input != 'Y' && input != 'N') {
-    cout << "Would you like to play against a CPU? Y/N";
+    cout << "Would you like to play against a CPU? Y/N\n";
     cin >> input;
   }
   if (input == 'Y') {
