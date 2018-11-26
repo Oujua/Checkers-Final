@@ -32,7 +32,7 @@ public:
   void clearMoves();
   void updateBoard();
   void showBoard();
-  void gameLoop();
+  void game();
   void CPUPlayer(bool);
   void moveCPU(Player*);
 };
