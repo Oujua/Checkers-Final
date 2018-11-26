@@ -13,6 +13,23 @@ struct CheckerPiece {
   CheckerPiece* next;
 };
 
+class Player {
+private:
+  char playercolor;
+public:
+  CheckerPiece* pieces;
+  Move* moves;
+  Player(char);
+  void add(int, int);
+  void plusMove(int, int, int, int, int);
+  void generateMoves();
+  bool inList(int, int, int, int);
+  void printPieces();
+  void printMoves();
+  void clearMoves();
+  void deletePiece(int, int);
+};
+
 class Board {
 private:
   Player* black;
@@ -37,21 +54,5 @@ public:
   void moveCPU(Player*);
 };
 
-class Player {
-private:
-  char playercolor;
-public:
-  CheckerPiece* pieces;
-  Move* moves;
-  Player(char);
-  void add(int, int);
-  void plusMove(int, int, int, int, int);
-  void generateMoves();
-  bool inList(int, int, int, int);
-  void printPieces();
-  void printMoves();
-  void clearMoves();
-  void deletePiece(int, int);
-};
 
 #endif

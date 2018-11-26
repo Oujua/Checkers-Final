@@ -45,7 +45,7 @@ void Player::plusMove(int row1, int column1, int row2, int column2, int value) {
   Move* prev = nullptr;
   Move* current = moves;
   while (current) {
-    if (prev > current->value) break;
+    if (prev->value > current->value) break;
     prev = current;
     current = current->next;
   }
