@@ -83,30 +83,28 @@ void Board::gameLoop() {
       clearMoves();
       generateMoves();
       if (turncheck == 'b') {
-        cout << "BLACK turncheck\n";
+        cout << "Black player turn.\n";
         black->printPieces();
         black->printMoves();
         do {
-          cout << "ENTER MOVE COORDINATES\n";
-          cout << "CHOSEN PIECE (ROW COLUMN): ";
+          cout << "Enter coordinates\n";
+          cout << "current piece: (row column): ";
           cin >> piece_r >> piece_c;
-          cout << "PIECE DESTINATION (ROW COLUMN): ";
+          cout << "requested move: (row column): ";
           cin >> move_r >> move_c;
         } while (!(black->inList(piece_r, piece_c, move_r, move_c)));
-        // black->makeMove(piece_r, piece_c, move_r, move_c);
         makeMove(piece_r, piece_c, move_r, move_c);
       } else if (turncheck == 'r') {
-        cout << "RED turncheck\n";
+        cout << "Red player turn.\n";
         red->printPieces();
         red->printMoves();
         do {
-          cout << "ENTER MOVE COORDINATES\n";
-          cout << "CHOSEN PIECE (ROW COLUMN): ";
+          cout << "Enter coordinates\n";
+          cout << "current piece: (row column): ";
           cin >> piece_r >> piece_c;
-          cout << "PIECE DESTINATION (ROW COLUMN): ";
+          cout << "requested move: (row column): ";
           cin >> move_r >> move_c;
         } while (!(red->inList(piece_r, piece_c, move_r, move_c)));
-        // red->makeMove(piece_r, piece_c, move_r, move_c);
         makeMove(piece_r, piece_c, move_r, move_c);
       }
       gameover = gameOver();
