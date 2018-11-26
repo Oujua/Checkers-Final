@@ -176,8 +176,9 @@ void Board::moveCPU(Player* cpu) {
 
 bool Board::gameOver() {
   if (black->pieces == nullptr || red->pieces == nullptr ||
-         (black->moves == nullptr && red->moves == nullptr));
-         gameover = true;
+         (black->moves == nullptr && red->moves == nullptr)) {
+            gameover = true;
+         }
          return gameover;
 }
 
