@@ -113,12 +113,12 @@ int main() {
   while (input != 'Y' && input != 'N') {
     cout << "Would you like to play against a CPU? Y/N";
     cin >> input;
-  } 
+  }
   if (input == 'Y') {
     game.CPUPlayer(true);
   } else {
     game.CPUPlayer(false);
   }
-  game.gameLoop();
+  game.game();
   return 0;
 }

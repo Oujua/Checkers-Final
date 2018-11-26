@@ -74,7 +74,7 @@ void Board::showBoard() {
   }
 }
 
-void Board::gameLoop() {
+void Board::game() {
   int piece_r, piece_c, move_r, move_c;
   if (!CPU) {
     while (!gameover) {
