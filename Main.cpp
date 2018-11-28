@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main() {
   Board game;
   bool on = true;
