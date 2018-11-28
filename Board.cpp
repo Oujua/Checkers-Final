@@ -218,7 +218,7 @@ void Board::generateMoves() {
   for (int r = 0; r < 8; r++) {
     for (int c = 0; c < 8; c++) {
       if (!board[r][c]) continue;
-      if (board[r][c]->color == 'X') {
+      if (board[r][c]->color == 'b') {
         if (jumpPossible(r, c, r+1, c+1, r+2, c+2)) {
           black->plusMove(r, c, r+2, c+2, 3);
         }
@@ -242,7 +242,7 @@ void Board::generateMoves() {
     for (int r = 0; r < 8; r++) {
       for (int c = 0; c < 8; c++) {
         if (!board[r][c]) continue;
-        if (board[r][c]->color == 'X') {
+        if (board[r][c]->color == 'b') {
           if (movePossible(r, c, r+1, c+1)) {
             black->plusMove(r, c, r+1, c+1, 1);
           }
@@ -257,7 +257,7 @@ void Board::generateMoves() {
     for (int r = 0; r < 8; r++) {
       for (int c = 0; c < 8; c++) {
         if (!board[r][c]) continue;
-        if (board[r][c]->color == 'O') {
+        if (board[r][c]->color == 'r') {
           if (movePossible(r, c, r-1, c+1)) {
             red->plusMove(r, c, r-1, c+1, 1);
           }
