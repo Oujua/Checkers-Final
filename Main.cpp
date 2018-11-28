@@ -6,16 +6,11 @@ using namespace std;
 
 int main() {
   Board game;
-  char input;
-  while (input != 'Y' && input != 'N') {
-    cout << "Would you like to play against a CPU? Y/N\n";
-    cin >> input;
+  bool on = true;
+  cout << "Welcome to ASCII checkers! ";
+  while (on){
+  game.CPUPlayer(true);
+  game.gameLoop();
   }
-  if (input == 'Y') {
-    game.CPUPlayer(true);
-  } else {
-    game.CPUPlayer(false);
-  }
-  game.game();
   return 0;
 }
