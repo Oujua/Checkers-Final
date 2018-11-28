@@ -85,27 +85,27 @@ void Board::gameLoop() {
       clearMoves();
       generateMoves();
       if (turncheck == 'X') {
-        cout << "BLACK turncheck\n";
+        cout << "Black turn.\n";
         black->printPieces();
         black->printMoves();
         do {
-          cout << "ENTER MOVE COORDINATES\n";
-          cout << "CHOSEN PIECE (ROW COLUMN): ";
+          cout << "Enter coordinates\n";
+          cout << "Requested piece (enter row column): ";
           cin >> piece_r >> piece_c;
-          cout << "PIECE DESTINATION (ROW COLUMN): ";
+          cout << "Requested piece destination (enter row column): ";
           cin >> move_r >> move_c;
         } while (!(black->inList(piece_r, piece_c, move_r, move_c)));
         // black->makeMove(piece_r, piece_c, move_r, move_c);
         makeMove(piece_r, piece_c, move_r, move_c);
       } else if (turncheck == 'O') {
-        cout << "RED turncheck\n";
+        cout << "Red turn.\n";
         red->printPieces();
         red->printMoves();
         do {
-          cout << "ENTER MOVE COORDINATES\n";
-          cout << "CHOSEN PIECE (ROW COLUMN): ";
+          cout << "Enter coordinates\n";
+          cout << "Requested piece (enter row column): ";
           cin >> piece_r >> piece_c;
-          cout << "PIECE DESTINATION (ROW COLUMN): ";
+          cout << "Requested piece destination (enter row column): ";
           cin >> move_r >> move_c;
         } while (!(red->inList(piece_r, piece_c, move_r, move_c)));
         // red->makeMove(piece_r, piece_c, move_r, move_c);
@@ -129,7 +129,7 @@ void Board::gameLoop() {
       clearMoves();
       generateMoves();
       if (turncheck == choice) {
-        cout << "YOUR turncheck\n";
+        cout << "Your turn.\n";
         player->printPieces();
         player->printMoves();
         do {
@@ -168,9 +168,9 @@ void Board::moveCPU(Player* cpu) {
     c1 = first_move->c1;
     r2 = first_move->r2;
     c2 = first_move->c2;
-    cout << "***CPU moving R" << r1 << " C" << c1;
-    cout << " to R" << r2 << " C" << c2 << endl;
-    cout << "Making move\n";
+    cout << "CPU moving Row" << r1 << " Column" << c1;
+    cout << " to Row" << r2 << " Column" << c2 << endl;
+    cout << "Making move...\n";
     makeMove(r1, c1, r2, c2);
   } else {
     cout << "CPU has no possible moves\n";
@@ -272,9 +272,9 @@ void Board::generateMoves() {
 
 void Board::makeMove(int r1, int c1, int r3, int c3) {
   // If move is a jump
-  cout << "*******Entering make move function\n\n\n";
+  cout << "Entering make move...\n\n\n";
   if (r1 + 2 == r3 || r1 - 2 == r3) {
-    cout << "****Attempting to make a jump move\n";
+    cout << "Attempting to execute jump move...\n";
     int r2 = (r1 + r3) / 2;
     int c2 = (c1 + c3) / 2;
     if (board[r1][c1]->color == 'X') {
