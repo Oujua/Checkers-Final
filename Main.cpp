@@ -1,9 +1,7 @@
 #include "Classes.h"
-#include "Player.cpp"
-#include "Board.cpp"
 
+#include <iostream>
 using namespace std;
-
 
 int main() {
   Board game;

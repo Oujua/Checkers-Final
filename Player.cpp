@@ -15,11 +15,11 @@ Player::Player(char c) {
 
 void Player::printMoves() {
   Move* current = moves;
-  cout << "Possible moves (Player "  << playercolor <<  ")\n";
+  cout << "-----POSSIBLE MOVES (PLAYER "  << playercolor <<  ")-----\n";
   while (current) {
-    cout << "Move: Row" << current->rowloc << " Column" << current->columnloc << " ";
-    cout << "to Row" << current->newrowloc << " Column" << current->newcolumnloc;
-    cout << " (" << current->value << " points)\n";
+    cout << "Move: R" << current->rowloc << " C" << current->columnloc << " ";
+    cout << "to R" << current->newrowloc << " C" << current->newcolumnloc;
+    cout << " (" << current->value << " p)\n";
     current = current->next;
   }
 }
@@ -44,8 +44,8 @@ void Player::plusMove(int row1, int column1, int row2, int column2, int value) {
   if (!moves) {
     moves = new_move;
     new_move->next = nullptr;
-    return;
   }
+
   Move* prev = nullptr;
   Move* current = moves;
   while (current) {
@@ -91,9 +91,9 @@ void Player::deletePiece(int r, int c) {
 
 void Player::printPieces() {
   CheckerPiece* current = pieces;
-  cout << "Pieces for (Player " << playercolor << ")\n";
+  cout << "-----PIECES (PLAYER " << playercolor << ")-----\n";
   while (current) {
-    cout << current->color << " piece location: Row" << current->row << " Column" << current->column << endl;
+    cout << current->color << " piece: R" << current->row << " C" << current->column << endl;
     current = current->next;
   }
 }
@@ -110,5 +110,7 @@ void Player::clearMoves() {
     moves = nullptr;
   }
 }
+
+
 
 #endif
