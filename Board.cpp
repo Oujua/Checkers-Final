@@ -59,7 +59,7 @@ void Board::updateBoard() {
 void Board::showBoard() {
   cout << "C    ";
   for (int col = 0; col < 8; col++) {
-    cout << col;
+    cout << " "<< col;
   }
   cout << endl;
   for (int row = 0; row < 8; row++) {
