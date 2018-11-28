@@ -133,10 +133,10 @@ void Board::gameLoop() {
         player->printPieces();
         player->printMoves();
         do {
-          cout << "ENTER MOVE COORDINATES\n";
-          cout << "CHOSEN PIECE (ROW COLUMN): ";
+          cout << "Enter move coordinates:\n";
+          cout << "Chosen piece (enter row column): ";
           cin >> piece_r >> piece_c;
-          cout << "PIECE DESTINATION (ROW COLUMN): ";
+          cout << "Piece destination (enter row column): ";
           cin >> move_r >> move_c;
         } while (!(player->inList(piece_r, piece_c, move_r, move_c)));
         // black->makeMove(piece_r, piece_c, move_r, move_c);
