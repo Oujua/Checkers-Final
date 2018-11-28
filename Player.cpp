@@ -49,12 +49,13 @@ void Player::plusMove(int row1, int column1, int row2, int column2, int value) {
   Move* prev = nullptr;
   Move* current = moves;
   while (current) {
-    if (prev->value > current->value) break;
+    if (value > current->value) break;
     prev = current;
     current = current->next;
   }
   prev->next = new_move;
   new_move->next = current;
+  cout << "Error" << endl;
 }
 
 bool Player::inList(int row1, int column1, int row2, int column2) {
