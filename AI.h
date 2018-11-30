@@ -1,99 +1,91 @@
 #ifndef AI_H
 #define AI_H
 
+#include <vector>
 #include <string>
 #include <iostream>
-#include <vector>
 using namespace std;
 
-struct Point
-{
+struct Point {
     int row;
-    int column;
+    int col;
 };
 
-struct Move
-{
+struct Move {
     Point start;
     Point end;
 };
 
-enum Type
-{
-    nul,
+enum Side {
+    blackSide,
+    whiteSide
+};
+
+enum Type {
+    empty,
     black,
     white,
     blackKing,
     whiteKing
 };
 
-enum Side
-{
-    blackSide,
-    whiteSide
-};
-
-enum GameStats
-{
+enum Status {
     complete,
     invalidPiece,
     invalidDest,
     gameOver
 };
 
-class Board
-{
-  private:
-    int numBlack;
-    int numWhite;
+class Failure {};
+
+class Board {
+private:
+    Type** board;
+    int numBlackPieces;
+    int numWhitePieces;
     int numBlackKings;
     int numWhiteKings;
-    Type **board;
-
-  public:
+public:
     Board();
-    Board(Type **board);
-    Board *clone();
-    int getNumBlackPieces();
-    int getNumWhitePieces();
+    Board(Type** b);
+    bool isOpponentPiece(Side side, Type);
+    bool isOwnPiece(int r, int c, Side side);
+    bool movesEqual(Move one, Move two);
+    int getNumBlack();
+    int getNumWhite();
     int getNumBlackKings();
     int getNumWhiteKings();
-    bool isOpp(Side side, Type);
-    bool isOwn(int row, int column, Side side);
-    bool movesEqual(Move firstMove, Move secondMove);
-    void drawBoard();
-    void generateMoves(Side side, vector<Move> &moves);
-    void generateJumpMoves(int row, int column, Side side, vector<Move> &moves);
-    void generateValidMoves(int row, int column, Side side, vector<Move> &moves);
+    Board* clone();
     Type getPiece(int i, int j);
-    Type getPiece(Point point);
-    Point getMiddleSquare(Move move);
-    GameStats makeMove(Move move, Side side);
+    Type getPiece(Point p);
+    Point getMidSquare(Move move);
+    Status makeMove(Move move, Side side);
+    void drawBoard();
+    void genAllMoves(Side side, vector<Move>& moves);
+    void genValidJumpMoves(int r, int c, Side side, vector<Move>& moves);
+    void genValidMoves(int r, int c, Side side, vector<Move>& moves);
+    void setUpBoard();
 };
 
-class Player
-{
-  public:
+class Player {
+protected:
     Side side;
     string name;
-
-  public:
-    Player(string name, Side side);
-    virtual GameStats makeMove(Move move, Board board);
+public:
+    Player(string n, Side s);
     Side getSide();
+    virtual Status makeMove(Move move, Board b);
 };
 
-class AI : public Player
-{
-  private:
+class AI : public Player {
+private:
     int depth;
-
-  public:
-    AI(string name, Side side) : Player(name, side) { depth = 3; };
-    GameStats makeMove(Board board);
-    Move minimaxStart(Board board, Side side, bool maximing);
-    double minimax(Board board, Side side, bool maximing, int depth, int alpha, int beta);
-    double getHeuristicValues(Board board);
+public:
+    AI(string name, Side side) : Player(name, side){ depth = 3;};
+    Status makeMove(Board board);
+    Move minimaxStart(Board board, Side side, bool maximizing);
+    double minimax(Board board, Side side, bool maximizing, int depth, int alpha, int beta);
+    double getHeuristic(Board board);
     Side switchSide(Side side);
 };
 
